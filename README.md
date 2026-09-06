@@ -104,7 +104,7 @@ auto result = model.infer(audio.samples, audio.sample_rate);
 // result.f0 and result.confidence contain one value per valid 10 ms frame.
 ```
 
-Use `add_subdirectory(path/to/RMVPE.cpp)` and link `rmvpe::rmvpe`. See [examples/basic.cpp](examples/basic.cpp). Build the standalone consumer with cmake -S examples -B build-example -G Ninja and cmake --build build-example; its executable is in uild-example/bin. The model owns its weights, scheduler and cached graph; use one instance per concurrent caller. Errors are C++ exceptions.
+Use `add_subdirectory(path/to/RMVPE.cpp)` and link `rmvpe::rmvpe`. See [examples/basic.cpp](examples/basic.cpp). Build the standalone consumer with `cmake -S examples -B build-example -G Ninja` and `cmake --build build-example`; its executable is in `build-example/bin`. The model owns its weights, scheduler and cached graph; use one instance per concurrent caller. Errors are C++ exceptions.
 
 ## Measured performance
 
