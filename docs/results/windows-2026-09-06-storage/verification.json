@@ -1,0 +1,34 @@
+{
+  "tool_tests": {
+    "command": "python -m pytest tests/test_storage.py tests/test_tools.py -q",
+    "passed": 40
+  },
+  "existing_conversion": {
+    "f32": {
+      "sha256": "62025f24b76d2d3e2db81a0076e34a0b825017c3ed2e842788b08a2b13bf5bf5",
+      "original_converter_bytes_preserved": true
+    },
+    "f16": {
+      "sha256": "1ae031988cf085ff21708c49dc70885761260967b0dec9bfe5a661e256e6fee4",
+      "original_converter_bytes_preserved": true
+    }
+  },
+  "selected_conversion": "conversion-equivalence.json",
+  "selected_packaging": "production-packaging.json",
+  "native_comparisons": {
+    "cpu": {
+      "cases_passed": 24,
+      "frames": 8062,
+      "identical_frontend": true,
+      "max_pitch_cents": 0.001048610207045617
+    },
+    "vulkan": {
+      "cases_passed": 24,
+      "frames": 8062,
+      "identical_frontend": true,
+      "max_pitch_cents": 0.0011574687427542251
+    }
+  },
+  "fixture_reproduction": "fixture-reproduction.json",
+  "scope": "Windows local checks; new CI matrix has not been observed running"
+}

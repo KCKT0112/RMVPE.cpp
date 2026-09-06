@@ -1,0 +1,131 @@
+{
+  "zstandard_version": "0.22.0",
+  "compression_level": 9,
+  "block_bytes": 8388608,
+  "models": [
+    {
+      "name": "rmvpe-f32.gguf",
+      "bytes": 361883776,
+      "sha256": "62025f24b76d2d3e2db81a0076e34a0b825017c3ed2e842788b08a2b13bf5bf5",
+      "tensor_count": 272,
+      "tensor_bytes": 361860148,
+      "elements": 90465037,
+      "zero_elements": 64655,
+      "f32_elements": 90465037,
+      "f32_exactly_f16": 75323,
+      "groups": {
+        "frontend": 266760,
+        "encoder": 23757888,
+        "intermediate": 297863168,
+        "decoder": 35287424,
+        "output": 740460,
+        "GRU": 3944448
+      },
+      "duplicate_tensor_occurrences": 0,
+      "variants": [
+        {
+          "mode": "zstd",
+          "bytes": 334015884,
+          "reduction_percent": 7.700785127211674,
+          "compression_seconds": 1.5444259000068996,
+          "decompression_seconds": 0.7141495999967447,
+          "sha256_roundtrip_match": true
+        },
+        {
+          "mode": "byte-shuffle-zstd",
+          "bytes": 305801097,
+          "reduction_percent": 15.497428378773193,
+          "compression_seconds": 3.388212099991506,
+          "decompression_seconds": 0.9001650999998674,
+          "sha256_roundtrip_match": true
+        },
+        {
+          "mode": "bit-shuffle-zstd",
+          "bytes": 312325048,
+          "reduction_percent": 13.694653169530325,
+          "compression_seconds": 15.681593500004965,
+          "decompression_seconds": 9.342386999996961,
+          "sha256_roundtrip_match": true
+        },
+        {
+          "mode": "byte-shuffle-zstd-15",
+          "bytes": 305253202,
+          "reduction_percent": 15.648829197581938,
+          "recompression_seconds": 22.940265099998214,
+          "decompression_verify_seconds": 1.1342503000050783,
+          "sha256_roundtrip_match": true
+        },
+        {
+          "mode": "byte-shuffle-zstd-19",
+          "bytes": 302816277,
+          "reduction_percent": 16.322229101533413,
+          "recompression_seconds": 66.34731879999163,
+          "decompression_verify_seconds": 1.5972159999946598,
+          "sha256_roundtrip_match": true
+        }
+      ]
+    },
+    {
+      "name": "rmvpe-f16.gguf",
+      "bytes": 183112672,
+      "sha256": "1ae031988cf085ff21708c49dc70885761260967b0dec9bfe5a661e256e6fee4",
+      "tensor_count": 272,
+      "tensor_bytes": 183089044,
+      "elements": 90465037,
+      "zero_elements": 65939,
+      "f32_elements": 1079485,
+      "f32_exactly_f16": 64787,
+      "groups": {
+        "frontend": 266760,
+        "encoder": 11887872,
+        "intermediate": 148965376,
+        "decoder": 17653632,
+        "output": 370956,
+        "GRU": 3944448
+      },
+      "duplicate_tensor_occurrences": 0,
+      "variants": [
+        {
+          "mode": "zstd",
+          "bytes": 166638467,
+          "reduction_percent": 8.996758564038654,
+          "compression_seconds": 4.175504099999671,
+          "decompression_seconds": 0.41598489999887533,
+          "sha256_roundtrip_match": true
+        },
+        {
+          "mode": "byte-shuffle-zstd",
+          "bytes": 153500766,
+          "reduction_percent": 16.171412757277658,
+          "compression_seconds": 1.6640262000000803,
+          "decompression_seconds": 0.7654038000036962,
+          "sha256_roundtrip_match": true
+        },
+        {
+          "mode": "bit-shuffle-zstd",
+          "bytes": 164261404,
+          "reduction_percent": 10.294900835699671,
+          "compression_seconds": 4.646825199990417,
+          "decompression_seconds": 4.284181800001534,
+          "sha256_roundtrip_match": true
+        },
+        {
+          "mode": "byte-shuffle-zstd-15",
+          "bytes": 153862438,
+          "reduction_percent": 15.973899392391589,
+          "recompression_seconds": 11.24041300000681,
+          "decompression_verify_seconds": 0.5618709999980638,
+          "sha256_roundtrip_match": true
+        },
+        {
+          "mode": "byte-shuffle-zstd-19",
+          "bytes": 153848979,
+          "reduction_percent": 15.981249511776008,
+          "recompression_seconds": 38.11417289999372,
+          "decompression_verify_seconds": 1.0608590000047116,
+          "sha256_roundtrip_match": true
+        }
+      ]
+    }
+  ]
+}

@@ -93,3 +93,7 @@ Native audio-to-F0 measurements and ONNX placement are recorded in `diagnostics.
 The model is bidirectional and evaluated whole-input. Independent chunking changes context and is not a free memory optimization. Graphs are cached by frame count, and first-call pipeline work may dominate one-shot usage. Benchmark a reused Model instance when that reflects the intended application.
 
 The CPU convolution path is the main performance deficit; tuned CPU convolution/GEMM integration is worth further work. On Vulkan, the single-workgroup GRU and small bias/activation dispatches are remaining targets. Future improvements must retain precise crop/layout semantics and the documented numerical limits. See [BACKENDS.md](BACKENDS.md) and the unvalidated [Metal plan](METAL.md).
+
+## Storage size follow-up
+
+The `f16-intermediate` profile and optional BSZ packaging reduce the tested model to 203.119 MiB / 170.512 MiB respectively. These are storage measurements; the framework speed tables above still use the documented F32 model. Strict CPU/Vulkan execution expands F16 weights for F32 computation, so no inference speedup or memory reduction is claimed. See [MODEL_SIZE.md](MODEL_SIZE.md) for quality, archive sizes and reproduction.

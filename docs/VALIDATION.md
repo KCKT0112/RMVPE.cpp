@@ -34,6 +34,12 @@ Pitch errors compare locally decoded native probabilities against the original P
 
 These are implementation parity tests, not pitch ground-truth evaluation. The speech sample and harmonic fixtures do not establish singing performance, robustness to musical accompaniment or behavior near every possible confidence boundary.
 
+## Storage-profile follow-up
+
+The later storage study expands the fixture set to **24 cases / 8,062 frames**, adding two narration recordings and three song excerpts. The supported `f16-intermediate` converter profile reduces GGUF size to 203.119 MiB. Its maximum pitch difference from PyTorch is 0.003755 cents, with zero UV disagreement. Broad F16 reaches 31.142229 cents on the expanded set.
+
+The selected profile passes **23/24 end-to-end cases**: `libri1` has log-Mel error 0.008909225, exceeding the unchanged 0.005 bound. This failure is retained for all storage policies. A separate comparison against native F32 using identical native frontends passes 24/24 on both CPU and Vulkan, isolating storage effects from the frontend difference. Full data, conversion equivalence, packaging checks and reproduction commands are in [MODEL_SIZE.md](MODEL_SIZE.md) and [the storage results archive](results/windows-2026-09-06-storage/README.md).
+
 ## Native regression tests
 
 - Decoder boundary bins, threshold equality, unvoiced output and invalid inputs.

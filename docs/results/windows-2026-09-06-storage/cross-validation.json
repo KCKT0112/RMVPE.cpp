@@ -1,0 +1,581 @@
+{
+  "reference": "native F32 Vulkan, identical WAV/frontend",
+  "cases": [
+    {
+      "case": "silence",
+      "frames": 101,
+      "metrics": {
+        "candidate-vulkan-vs-f32": {
+          "prob_max_abs": 6.402842700481415e-10,
+          "prob_mean_abs": 1.711358312006528e-11,
+          "uv_disagreements": 0,
+          "voiced_frames": 0,
+          "pitch_max_cents": 0.0,
+          "pitch_mean_cents": 0.0,
+          "passed": true
+        },
+        "candidate-cpu-vs-f32": {
+          "prob_max_abs": 1.862645149230957e-09,
+          "prob_mean_abs": 7.866528262123751e-11,
+          "uv_disagreements": 0,
+          "voiced_frames": 0,
+          "pitch_max_cents": 0.0,
+          "pitch_mean_cents": 0.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "noise",
+      "frames": 101,
+      "metrics": {
+        "candidate-vulkan-vs-f32": {
+          "prob_max_abs": 1.862645149230957e-08,
+          "prob_mean_abs": 8.8484629345853e-11,
+          "uv_disagreements": 0,
+          "voiced_frames": 0,
+          "pitch_max_cents": 0.0,
+          "pitch_mean_cents": 0.0,
+          "passed": true
+        },
+        "candidate-cpu-vs-f32": {
+          "prob_max_abs": 4.284083843231201e-08,
+          "prob_mean_abs": 2.6169685862775793e-10,
+          "uv_disagreements": 0,
+          "voiced_frames": 0,
+          "pitch_max_cents": 0.0,
+          "pitch_mean_cents": 0.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "length_1",
+      "frames": 1,
+      "metrics": {
+        "candidate-vulkan-vs-f32": {
+          "prob_max_abs": 6.111804395914078e-10,
+          "prob_mean_abs": 7.06386824034233e-11,
+          "uv_disagreements": 0,
+          "voiced_frames": 0,
+          "pitch_max_cents": 0.0,
+          "pitch_mean_cents": 0.0,
+          "passed": true
+        },
+        "candidate-cpu-vs-f32": {
+          "prob_max_abs": 1.949956640601158e-09,
+          "prob_mean_abs": 2.6848748224672647e-10,
+          "uv_disagreements": 0,
+          "voiced_frames": 0,
+          "pitch_max_cents": 0.0,
+          "pitch_mean_cents": 0.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "length_159",
+      "frames": 1,
+      "metrics": {
+        "candidate-vulkan-vs-f32": {
+          "prob_max_abs": 4.6566128730773926e-08,
+          "prob_mean_abs": 1.993756937324065e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 1,
+          "pitch_max_cents": 8.700329131581174e-05,
+          "pitch_mean_cents": 8.700329131581174e-05,
+          "passed": true
+        },
+        "candidate-cpu-vs-f32": {
+          "prob_max_abs": 6.51925802230835e-08,
+          "prob_mean_abs": 4.682325194238501e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 1,
+          "pitch_max_cents": 4.854483419524012e-05,
+          "pitch_mean_cents": 4.854483419524012e-05,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "length_160",
+      "frames": 2,
+      "metrics": {
+        "candidate-vulkan-vs-f32": {
+          "prob_max_abs": 5.960464477539063e-08,
+          "prob_mean_abs": 1.7789446582483492e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 1,
+          "pitch_max_cents": 6.320231573287337e-05,
+          "pitch_mean_cents": 6.320231573287337e-05,
+          "passed": true
+        },
+        "candidate-cpu-vs-f32": {
+          "prob_max_abs": 9.685754776000977e-08,
+          "prob_mean_abs": 3.3093974227682565e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 1,
+          "pitch_max_cents": 8.397615590184312e-05,
+          "pitch_mean_cents": 8.397615590184312e-05,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "length_511",
+      "frames": 4,
+      "metrics": {
+        "candidate-vulkan-vs-f32": {
+          "prob_max_abs": 1.4901161193847656e-07,
+          "prob_mean_abs": 1.193459664428076e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 4,
+          "pitch_max_cents": 0.0005559677953685847,
+          "pitch_mean_cents": 0.00027627994557196815,
+          "passed": true
+        },
+        "candidate-cpu-vs-f32": {
+          "prob_max_abs": 2.384185791015625e-07,
+          "prob_mean_abs": 2.5090485245016225e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 4,
+          "pitch_max_cents": 0.000356227536332995,
+          "pitch_mean_cents": 0.00024065943859693774,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "length_512",
+      "frames": 4,
+      "metrics": {
+        "candidate-vulkan-vs-f32": {
+          "prob_max_abs": 1.4901161193847656e-07,
+          "prob_mean_abs": 1.34052458022893e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 4,
+          "pitch_max_cents": 0.0005750455420970757,
+          "pitch_mean_cents": 0.0003985565772716463,
+          "passed": true
+        },
+        "candidate-cpu-vs-f32": {
+          "prob_max_abs": 2.384185791015625e-07,
+          "prob_mean_abs": 2.6813464781838547e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 4,
+          "pitch_max_cents": 0.00026933908111891866,
+          "pitch_mean_cents": 8.777803832089234e-05,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "length_4959",
+      "frames": 31,
+      "metrics": {
+        "candidate-vulkan-vs-f32": {
+          "prob_max_abs": 1.1920928955078125e-07,
+          "prob_mean_abs": 4.3649850400839796e-10,
+          "uv_disagreements": 0,
+          "voiced_frames": 31,
+          "pitch_max_cents": 0.0006285221483820237,
+          "pitch_mean_cents": 0.00012988845104412036,
+          "passed": true
+        },
+        "candidate-cpu-vs-f32": {
+          "prob_max_abs": 3.129243850708008e-07,
+          "prob_mean_abs": 1.5700866162760008e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 31,
+          "pitch_max_cents": 0.0006175205316977996,
+          "pitch_mean_cents": 0.00024267779918872007,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "length_4960",
+      "frames": 32,
+      "metrics": {
+        "candidate-vulkan-vs-f32": {
+          "prob_max_abs": 1.7881393432617188e-07,
+          "prob_mean_abs": 5.491969656823414e-10,
+          "uv_disagreements": 0,
+          "voiced_frames": 32,
+          "pitch_max_cents": 0.0006499082640968011,
+          "pitch_mean_cents": 0.00014099372998192962,
+          "passed": true
+        },
+        "candidate-cpu-vs-f32": {
+          "prob_max_abs": 2.980232238769531e-07,
+          "prob_mean_abs": 1.6706347416572953e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 32,
+          "pitch_max_cents": 0.00040164401699958495,
+          "pitch_mean_cents": 0.00015464100611266667,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "length_5119",
+      "frames": 32,
+      "metrics": {
+        "candidate-vulkan-vs-f32": {
+          "prob_max_abs": 1.7881393432617188e-07,
+          "prob_mean_abs": 5.491969656823414e-10,
+          "uv_disagreements": 0,
+          "voiced_frames": 32,
+          "pitch_max_cents": 0.0006499082640968011,
+          "pitch_mean_cents": 0.00014099372998192962,
+          "passed": true
+        },
+        "candidate-cpu-vs-f32": {
+          "prob_max_abs": 2.980232238769531e-07,
+          "prob_mean_abs": 1.6706347416572953e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 32,
+          "pitch_max_cents": 0.00040164401699958495,
+          "pitch_mean_cents": 0.00015464100611266667,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "length_5120",
+      "frames": 33,
+      "metrics": {
+        "candidate-vulkan-vs-f32": {
+          "prob_max_abs": 1.1920928955078125e-07,
+          "prob_mean_abs": 5.236926448048962e-10,
+          "uv_disagreements": 0,
+          "voiced_frames": 33,
+          "pitch_max_cents": 0.0006727157209212249,
+          "pitch_mean_cents": 0.00016864515155735158,
+          "passed": true
+        },
+        "candidate-cpu-vs-f32": {
+          "prob_max_abs": 2.980232238769531e-07,
+          "prob_mean_abs": 1.5812914311297277e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 33,
+          "pitch_max_cents": 0.0005739974691948607,
+          "pitch_mean_cents": 0.00018527760570950365,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "length_5121",
+      "frames": 33,
+      "metrics": {
+        "candidate-vulkan-vs-f32": {
+          "prob_max_abs": 1.341104507446289e-07,
+          "prob_mean_abs": 5.048385598449556e-10,
+          "uv_disagreements": 0,
+          "voiced_frames": 33,
+          "pitch_max_cents": 0.000482894876116627,
+          "pitch_mean_cents": 0.0001823659672388746,
+          "passed": true
+        },
+        "candidate-cpu-vs-f32": {
+          "prob_max_abs": 2.980232238769531e-07,
+          "prob_mean_abs": 1.7644641303604658e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 33,
+          "pitch_max_cents": 0.0007156652421973737,
+          "pitch_mean_cents": 0.00025571299763664073,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "harmonic_8000",
+      "frames": 121,
+      "metrics": {
+        "candidate-vulkan-vs-f32": {
+          "prob_max_abs": 2.086162567138672e-07,
+          "prob_mean_abs": 5.188044993609253e-10,
+          "uv_disagreements": 0,
+          "voiced_frames": 106,
+          "pitch_max_cents": 0.0006488094555180918,
+          "pitch_mean_cents": 0.00015246094815862303,
+          "passed": true
+        },
+        "candidate-cpu-vs-f32": {
+          "prob_max_abs": 3.427267074584961e-07,
+          "prob_mean_abs": 1.4585666008315457e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 106,
+          "pitch_max_cents": 0.000606677557193463,
+          "pitch_mean_cents": 0.00020195948781899143,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "harmonic_16000",
+      "frames": 121,
+      "metrics": {
+        "candidate-vulkan-vs-f32": {
+          "prob_max_abs": 2.384185791015625e-07,
+          "prob_mean_abs": 5.276500347761726e-10,
+          "uv_disagreements": 0,
+          "voiced_frames": 107,
+          "pitch_max_cents": 0.0007183491657351619,
+          "pitch_mean_cents": 0.00020485641103262108,
+          "passed": true
+        },
+        "candidate-cpu-vs-f32": {
+          "prob_max_abs": 5.364418029785156e-07,
+          "prob_mean_abs": 1.6431062066502022e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 107,
+          "pitch_max_cents": 0.000746772890793484,
+          "pitch_mean_cents": 0.00021770046522987237,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "harmonic_22050",
+      "frames": 121,
+      "metrics": {
+        "candidate-vulkan-vs-f32": {
+          "prob_max_abs": 2.086162567138672e-07,
+          "prob_mean_abs": 5.017952720010044e-10,
+          "uv_disagreements": 0,
+          "voiced_frames": 110,
+          "pitch_max_cents": 0.0006978109823635907,
+          "pitch_mean_cents": 0.0001629960344903524,
+          "passed": true
+        },
+        "candidate-cpu-vs-f32": {
+          "prob_max_abs": 3.5762786865234375e-07,
+          "prob_mean_abs": 1.5082376458863678e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 110,
+          "pitch_max_cents": 0.0006418452595088811,
+          "pitch_mean_cents": 0.00022168398706436777,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "harmonic_44100",
+      "frames": 121,
+      "metrics": {
+        "candidate-vulkan-vs-f32": {
+          "prob_max_abs": 2.086162567138672e-07,
+          "prob_mean_abs": 5.337782993386497e-10,
+          "uv_disagreements": 0,
+          "voiced_frames": 109,
+          "pitch_max_cents": 0.0007817941194589183,
+          "pitch_mean_cents": 0.00018787121022134214,
+          "passed": true
+        },
+        "candidate-cpu-vs-f32": {
+          "prob_max_abs": 3.5762786865234375e-07,
+          "prob_mean_abs": 1.4907054479706972e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 109,
+          "pitch_max_cents": 0.0007924303518862886,
+          "pitch_mean_cents": 0.00021029717358657203,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "harmonic_48000",
+      "frames": 121,
+      "metrics": {
+        "candidate-vulkan-vs-f32": {
+          "prob_max_abs": 1.7881393432617188e-07,
+          "prob_mean_abs": 5.280689774345149e-10,
+          "uv_disagreements": 0,
+          "voiced_frames": 108,
+          "pitch_max_cents": 0.0005923385814079927,
+          "pitch_mean_cents": 0.00015130328831943512,
+          "passed": true
+        },
+        "candidate-cpu-vs-f32": {
+          "prob_max_abs": 3.5762786865234375e-07,
+          "prob_mean_abs": 1.552557526984799e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 108,
+          "pitch_max_cents": 0.0006395422591648845,
+          "pitch_mean_cents": 0.00016955928822701103,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "stereo",
+      "frames": 101,
+      "metrics": {
+        "candidate-vulkan-vs-f32": {
+          "prob_max_abs": 1.9371509552001953e-07,
+          "prob_mean_abs": 4.703281653029023e-10,
+          "uv_disagreements": 0,
+          "voiced_frames": 90,
+          "pitch_max_cents": 0.0006711867041315086,
+          "pitch_mean_cents": 0.00016331243115882084,
+          "passed": true
+        },
+        "candidate-cpu-vs-f32": {
+          "prob_max_abs": 4.172325134277344e-07,
+          "prob_mean_abs": 1.4999554931449666e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 90,
+          "pitch_max_cents": 0.0006836525180198766,
+          "pitch_mean_cents": 0.0002281104580985726,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "recording_0_jfk",
+      "frames": 1101,
+      "metrics": {
+        "candidate-vulkan-vs-f32": {
+          "prob_max_abs": 4.172325134277344e-07,
+          "prob_mean_abs": 1.0247426240894697e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 869,
+          "pitch_max_cents": 0.000869800385320806,
+          "pitch_mean_cents": 0.0002219308301897068,
+          "passed": true
+        },
+        "candidate-cpu-vs-f32": {
+          "prob_max_abs": 5.364418029785156e-07,
+          "prob_mean_abs": 2.276252741850726e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 869,
+          "pitch_max_cents": 0.0009613695586714952,
+          "pitch_mean_cents": 0.0002446086473446941,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "libri1",
+      "frames": 1485,
+      "metrics": {
+        "candidate-vulkan-vs-f32": {
+          "prob_max_abs": 2.0265579223632812e-06,
+          "prob_mean_abs": 2.476511218318933e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 1107,
+          "pitch_max_cents": 0.000723801891135828,
+          "pitch_mean_cents": 0.0001548349517320838,
+          "passed": true
+        },
+        "candidate-cpu-vs-f32": {
+          "prob_max_abs": 2.5033950805664062e-06,
+          "prob_mean_abs": 5.12695930154905e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 1107,
+          "pitch_max_cents": 0.000693543298344189,
+          "pitch_mean_cents": 0.00016460369096581216,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "libri3",
+      "frames": 1392,
+      "metrics": {
+        "candidate-vulkan-vs-f32": {
+          "prob_max_abs": 5.066394805908203e-07,
+          "prob_mean_abs": 7.985160865864316e-10,
+          "uv_disagreements": 0,
+          "voiced_frames": 893,
+          "pitch_max_cents": 0.0010717905476093626,
+          "pitch_mean_cents": 0.00023081469116501522,
+          "passed": true
+        },
+        "candidate-cpu-vs-f32": {
+          "prob_max_abs": 6.556510925292969e-07,
+          "prob_mean_abs": 1.6272009295548173e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 893,
+          "pitch_max_cents": 0.0008903891254468512,
+          "pitch_mean_cents": 0.00023636363296714586,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "fishin_10s",
+      "frames": 1001,
+      "metrics": {
+        "candidate-vulkan-vs-f32": {
+          "prob_max_abs": 2.980232238769531e-07,
+          "prob_mean_abs": 1.0462457566973171e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 877,
+          "pitch_max_cents": 0.0010549733633719255,
+          "pitch_mean_cents": 0.0002308102087650796,
+          "passed": true
+        },
+        "candidate-cpu-vs-f32": {
+          "prob_max_abs": 8.046627044677734e-07,
+          "prob_mean_abs": 2.6541719932993146e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 877,
+          "pitch_max_cents": 0.001000004473885938,
+          "pitch_mean_cents": 0.0002469809419592352,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "fishin_45s",
+      "frames": 1001,
+      "metrics": {
+        "candidate-vulkan-vs-f32": {
+          "prob_max_abs": 3.5762786865234375e-07,
+          "prob_mean_abs": 8.703472387239231e-10,
+          "uv_disagreements": 0,
+          "voiced_frames": 795,
+          "pitch_max_cents": 0.0009529413259939897,
+          "pitch_mean_cents": 0.00023076847969856988,
+          "passed": true
+        },
+        "candidate-cpu-vs-f32": {
+          "prob_max_abs": 5.811452865600586e-07,
+          "prob_mean_abs": 2.0329291583465192e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 795,
+          "pitch_max_cents": 0.0008351707922974692,
+          "pitch_mean_cents": 0.0002435129455596685,
+          "passed": true
+        }
+      }
+    },
+    {
+      "case": "fishin_90s",
+      "frames": 1001,
+      "metrics": {
+        "candidate-vulkan-vs-f32": {
+          "prob_max_abs": 4.470348358154297e-07,
+          "prob_mean_abs": 1.3592070802204148e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 911,
+          "pitch_max_cents": 0.0011574687427542251,
+          "pitch_mean_cents": 0.0002519941553939893,
+          "passed": true
+        },
+        "candidate-cpu-vs-f32": {
+          "prob_max_abs": 8.940696716308594e-07,
+          "prob_mean_abs": 3.161958916919616e-09,
+          "uv_disagreements": 0,
+          "voiced_frames": 911,
+          "pitch_max_cents": 0.001048610207045617,
+          "pitch_mean_cents": 0.0002525360939845411,
+          "passed": true
+        }
+      }
+    }
+  ]
+}

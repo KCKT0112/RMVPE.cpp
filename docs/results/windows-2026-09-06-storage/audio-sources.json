@@ -1,0 +1,40 @@
+[
+  {
+    "name": "libri1",
+    "source": "https://librosa.org/data/audio/5703-47212-0000.ogg",
+    "sha256": "a284612b46af0535f7e1873758c4387bb8369f6dbbe192ffdec1f171108f98dd",
+    "duration": 14.84,
+    "sample_rate": 22050
+  },
+  {
+    "name": "libri3",
+    "source": "https://librosa.org/data/audio/198-209-0000.ogg",
+    "sha256": "0473ba9613befa1026db5e254546f105aeffba8366b5468fc5e8d474d844ca1d",
+    "duration": 13.910068027210885,
+    "sample_rate": 22050
+  },
+  {
+    "name": "fishin_10s",
+    "source": "https://librosa.org/data/audio/Karissa_Hobbs_-_Lets_Go_Fishin.ogg",
+    "sha256": "27b3667c396c1831511aa3c415fcf582b6e8be560cafb844c5b67b76b72c1cb3",
+    "start": 10,
+    "duration": 10,
+    "sample_rate": 22050
+  },
+  {
+    "name": "fishin_45s",
+    "source": "https://librosa.org/data/audio/Karissa_Hobbs_-_Lets_Go_Fishin.ogg",
+    "sha256": "27b3667c396c1831511aa3c415fcf582b6e8be560cafb844c5b67b76b72c1cb3",
+    "start": 45,
+    "duration": 10,
+    "sample_rate": 22050
+  },
+  {
+    "name": "fishin_90s",
+    "source": "https://librosa.org/data/audio/Karissa_Hobbs_-_Lets_Go_Fishin.ogg",
+    "sha256": "27b3667c396c1831511aa3c415fcf582b6e8be560cafb844c5b67b76b72c1cb3",
+    "start": 90,
+    "duration": 10,
+    "sample_rate": 22050
+  }
+]

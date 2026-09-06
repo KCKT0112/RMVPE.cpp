@@ -1,0 +1,167 @@
+[
+  {
+    "name": "f32",
+    "bytes": 361883776,
+    "metrics": {
+      "prob_max_abs": 0.0,
+      "prob_mean_abs": 0.0,
+      "uv_disagreements": 0,
+      "voiced_frames": 869,
+      "pitch_max_cents": 0.0,
+      "pitch_mean_cents": 0.0,
+      "pitch_p99_cents": 0.0,
+      "frames_above_5_cents": 0
+    },
+    "execution": {
+      "backend": "Vulkan0",
+      "frames": 1120,
+      "output_frames": 1101,
+      "duration_s": 11,
+      "load_ms": 849.4791,
+      "frontend_ms": 5.3238,
+      "first_inference_ms": 70.9415,
+      "median_ms": 70.9415,
+      "rtf": 0.00644922727,
+      "graph_nodes": 599,
+      "graph_splits": 1,
+      "cpu_compute_nodes": 0,
+      "accelerator_compute_nodes": 461,
+      "compute_buffer_bytes": 37273600,
+      "samples_ms": [
+        70.9415
+      ]
+    }
+  },
+  {
+    "name": "f16",
+    "bytes": 183112672,
+    "metrics": {
+      "prob_max_abs": 0.0008600950241088867,
+      "prob_mean_abs": 2.0865275018877583e-06,
+      "uv_disagreements": 0,
+      "voiced_frames": 869,
+      "pitch_max_cents": 12.393255755733135,
+      "pitch_mean_cents": 0.020986640383840665,
+      "pitch_p99_cents": 0.03101417463729683,
+      "frames_above_5_cents": 1
+    },
+    "execution": {
+      "backend": "Vulkan0",
+      "frames": 1120,
+      "output_frames": 1101,
+      "duration_s": 11,
+      "load_ms": 561.9012,
+      "frontend_ms": 7.174,
+      "first_inference_ms": 76.8832,
+      "median_ms": 76.8832,
+      "rtf": 0.00698938182,
+      "graph_nodes": 729,
+      "graph_splits": 1,
+      "cpu_compute_nodes": 0,
+      "accelerator_compute_nodes": 591,
+      "compute_buffer_bytes": 384817472,
+      "samples_ms": [
+        76.8832
+      ]
+    }
+  },
+  {
+    "name": "f16-head",
+    "bytes": 183481888,
+    "metrics": {
+      "prob_max_abs": 0.0008556544780731201,
+      "prob_mean_abs": 1.8847890714823734e-06,
+      "uv_disagreements": 0,
+      "voiced_frames": 869,
+      "pitch_max_cents": 12.390394591245638,
+      "pitch_mean_cents": 0.020767050966791146,
+      "pitch_p99_cents": 0.03147450792555231,
+      "frames_above_5_cents": 1
+    },
+    "execution": {
+      "backend": "Vulkan0",
+      "frames": 1120,
+      "output_frames": 1101,
+      "duration_s": 11,
+      "load_ms": 567.8743,
+      "frontend_ms": 5.7343,
+      "first_inference_ms": 78.2228,
+      "median_ms": 78.2228,
+      "rtf": 0.00711116364,
+      "graph_nodes": 727,
+      "graph_splits": 1,
+      "cpu_compute_nodes": 0,
+      "accelerator_compute_nodes": 589,
+      "compute_buffer_bytes": 384078464,
+      "samples_ms": [
+        78.2228
+      ]
+    }
+  },
+  {
+    "name": "f16-edges",
+    "bytes": 183566176,
+    "metrics": {
+      "prob_max_abs": 0.0004046708345413208,
+      "prob_mean_abs": 9.259320563614892e-07,
+      "uv_disagreements": 0,
+      "voiced_frames": 869,
+      "pitch_max_cents": 0.028342730602354285,
+      "pitch_mean_cents": 0.003409621113585328,
+      "pitch_p99_cents": 0.01705517738720392,
+      "frames_above_5_cents": 0
+    },
+    "execution": {
+      "backend": "Vulkan0",
+      "frames": 1120,
+      "output_frames": 1101,
+      "duration_s": 11,
+      "load_ms": 615.4994,
+      "frontend_ms": 5.0901,
+      "first_inference_ms": 73.5977,
+      "median_ms": 73.5977,
+      "rtf": 0.0066907,
+      "graph_nodes": 708,
+      "graph_splits": 1,
+      "cpu_compute_nodes": 0,
+      "accelerator_compute_nodes": 570,
+      "compute_buffer_bytes": 383911936,
+      "samples_ms": [
+        73.5977
+      ]
+    }
+  },
+  {
+    "name": "f16-intermediate",
+    "bytes": 212985696,
+    "metrics": {
+      "prob_max_abs": 4.172325134277344e-07,
+      "prob_mean_abs": 1.0247426240894697e-09,
+      "uv_disagreements": 0,
+      "voiced_frames": 869,
+      "pitch_max_cents": 0.000869800385320806,
+      "pitch_mean_cents": 0.0002219308301897068,
+      "pitch_p99_cents": 0.0007126666934298426,
+      "frames_above_5_cents": 0
+    },
+    "execution": {
+      "backend": "Vulkan0",
+      "frames": 1120,
+      "output_frames": 1101,
+      "duration_s": 11,
+      "load_ms": 647.1205,
+      "frontend_ms": 4.9631,
+      "first_inference_ms": 77.7347,
+      "median_ms": 77.7347,
+      "rtf": 0.00706679091,
+      "graph_nodes": 632,
+      "graph_splits": 1,
+      "cpu_compute_nodes": 0,
+      "accelerator_compute_nodes": 494,
+      "compute_buffer_bytes": 325943296,
+      "samples_ms": [
+        77.7347
+      ]
+    }
+  }
+]

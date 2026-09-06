@@ -47,17 +47,29 @@ git clone https://github.com/yxlllc/RMVPE.git reference/RMVPE
 git -C reference/RMVPE checkout 0aabafba18289ca938a73af0b0297686abf4922d
 python scripts/download_model.py
 python scripts/convert_rmvpe.py models/original/model.pt models/rmvpe-f32.gguf
+python scripts/convert_rmvpe.py models/original/model.pt models/rmvpe-f16-intermediate.gguf --dtype f16-intermediate
 python scripts/convert_rmvpe.py models/original/model.pt models/rmvpe-f16.gguf --dtype f16
 ```
 
-The downloader retrieves the requested [rmvpe.zip](https://github.com/yxlllc/RMVPE/releases/download/230917/rmvpe.zip), checks SHA256 and extracts only `model.pt`. The converter loads it with `weights_only=True`, validates the E2E0 architecture, folds evaluation BatchNorm into convolution weights, and omits the timbre-filter branch that E2E0 never executes. GRU weights, affine terms, window and filterbank remain F32 in both storage formats.
+The downloader retrieves the requested [rmvpe.zip](https://github.com/yxlllc/RMVPE/releases/download/230917/rmvpe.zip), checks SHA256 and extracts only `model.pt`. The converter loads it with `weights_only=True`, validates the E2E0 architecture, folds evaluation BatchNorm into convolution weights, and omits the timbre-filter branch that E2E0 never executes. GRU weights, affine terms, window and filterbank remain F32 in every storage profile.
 
 | Output | Bytes | Description |
 | --- | ---: | --- |
 | `rmvpe-f32.gguf` | 361,883,776 | Recommended reference/default storage |
-| `rmvpe-f16.gguf` | 183,112,672 | F16 convolution/projection storage; other tensors F32 |
+| `rmvpe-f16-intermediate.gguf` | 212,986,112 | Recommended reduced-size option: only intermediate convolutions F16 |
+| `rmvpe-f16.gguf` | 183,112,672 | Experimental broad F16 convolution/projection storage |
 
-F16 storage failed the 5-cent pitch limit on one real-speech case (about **12.39 cents** maximum deviation, with no voiced/unvoiced mismatch). It is an experimental size option; use F32 when numerical parity matters. See [validation details](docs/VALIDATION.md).
+The intermediate-only profile is **203.12 MiB**, 41.15% smaller than F32. On 24 fixtures (8,062 frames), its maximum pitch difference from PyTorch was **0.00376 cents**, with no voiced/unvoiced disagreement. Separate comparisons against native F32 pass 24/24 on CPU and Vulkan. The PyTorch end-to-end suite still reports the existing `libri1` frontend-limit failure (23/24); see [model-size measurements and limits](docs/MODEL_SIZE.md).
+
+Broad F16 reached **31.14 cents** maximum pitch deviation on the expanded fixtures, so it remains experimental. F32 is the reference/default. Smaller storage does not guarantee less runtime memory or faster inference.
+
+For distribution, reversible byte shuffle + Zstd reduces the intermediate-only GGUF to **170.51 MiB**, about **50.59% smaller than F32**. Unpack before inference; existing output files are never overwritten:
+
+```sh
+python -m pip install -r requirements-compression.txt
+python scripts/compress_model.py pack models/rmvpe-f16-intermediate.gguf models/rmvpe-f16-intermediate.gguf.bsz
+python scripts/compress_model.py unpack models/rmvpe-f16-intermediate.gguf.bsz models/rmvpe-restored.gguf
+```
 
 Each output includes GGUF provenance metadata and a `.gguf.json` manifest with source/checkpoint/output hashes. Weights, ONNX models and original Python sources are not committed.
 

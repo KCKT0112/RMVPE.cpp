@@ -1,0 +1,33 @@
+{
+  "experimental_sha256": "b47d8a9db19341c9b45fd2baa474b15bb038577dc7695623af2762abbbd4513f",
+  "converted_sha256": "9cc338bd949a601cedbd114aec4eb69a98999fd0bb31f16856afee5e3ead9b2f",
+  "converted_bytes": 212986112,
+  "tensor_count": 272,
+  "f16_tensor_count": 33,
+  "all_tensor_names_shapes_types_bytes_identical": true,
+  "pack": {
+    "operation": "pack",
+    "original_bytes": 212986112,
+    "compressed_bytes": 178794609,
+    "model_sha256": "9cc338bd949a601cedbd114aec4eb69a98999fd0bb31f16856afee5e3ead9b2f",
+    "level": 9,
+    "zstandard_version": "0.22.0",
+    "seconds": 2.1447692999936407
+  },
+  "unpack": {
+    "operation": "unpack",
+    "original_bytes": 212986112,
+    "compressed_bytes": 178794609,
+    "model_sha256": "9cc338bd949a601cedbd114aec4eb69a98999fd0bb31f16856afee5e3ead9b2f",
+    "sha256_verified": true,
+    "seconds": 4.795510900003137
+  },
+  "legacy_archive_unpacked": {
+    "operation": "unpack",
+    "original_bytes": 212985696,
+    "compressed_bytes": 178804013,
+    "model_sha256": "b47d8a9db19341c9b45fd2baa474b15bb038577dc7695623af2762abbbd4513f",
+    "sha256_verified": true,
+    "seconds": 4.787023000011686
+  }
+}

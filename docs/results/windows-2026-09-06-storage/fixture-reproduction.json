@@ -1,0 +1,45 @@
+{
+  "note": "WAV PEAK timestamps can change file hashes; decoded samples match exactly",
+  "fixtures": [
+    {
+      "name": "libri1",
+      "sample_rate": 22050,
+      "samples": 327222,
+      "pcm_f32le_sha256": "0906d5a81055293aeff8f58d3aec6f882aaa4a64f4e8861b694d02da2fdb1cc2",
+      "exact_samples_match_recorded_fixture": true,
+      "recorded_wav_sha256": "51aede1cc642bd3843dc7dd6b4b17669aa9440eb619360e6275215e69bf06ea3"
+    },
+    {
+      "name": "libri3",
+      "sample_rate": 22050,
+      "samples": 306717,
+      "pcm_f32le_sha256": "d3660123f48cc71b232c3791a31a119bda6c22885bbad282a1e31971158375a5",
+      "exact_samples_match_recorded_fixture": true,
+      "recorded_wav_sha256": "e84b9acd4edc09198258f24f51aa02739aba920d520f246c29e268f894ec307d"
+    },
+    {
+      "name": "fishin_10s",
+      "sample_rate": 22050,
+      "samples": 220500,
+      "pcm_f32le_sha256": "5543820eae903c8993808c75b87dce0a312b189b74fed99e3c5fae9bce60e9d9",
+      "exact_samples_match_recorded_fixture": true,
+      "recorded_wav_sha256": "0b2acde83e0f32a2b16d71933e386ee9729564ac4745577eba46e448b4b71c76"
+    },
+    {
+      "name": "fishin_45s",
+      "sample_rate": 22050,
+      "samples": 220500,
+      "pcm_f32le_sha256": "fe7e96ce95d7e69ecf435d897253dad8596bd47359cf656f6e33288ff804c3e4",
+      "exact_samples_match_recorded_fixture": true,
+      "recorded_wav_sha256": "8459793fe025dfe3cd5495608c6bb8a4f4d776546c8572ea153ff0b9a122c78d"
+    },
+    {
+      "name": "fishin_90s",
+      "sample_rate": 22050,
+      "samples": 220500,
+      "pcm_f32le_sha256": "0d58ff63e387f6e313c27f55986214cf275827133910ace9151ab1559f1dc6ba",
+      "exact_samples_match_recorded_fixture": true,
+      "recorded_wav_sha256": "73b92ce27c57e160f11a51b57bc1ba5de96f5aa7975eaf0337773b5a7219e257"
+    }
+  ]
+}

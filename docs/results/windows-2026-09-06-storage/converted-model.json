@@ -1,0 +1,12 @@
+{
+  "source": "https://github.com/yxlllc/RMVPE",
+  "release": "230917",
+  "checkpoint_sha256": "19dc1809cf4cdb0a18db93441816bc327e14e5644b72eeaae5220560c6736fe2",
+  "storage": "f16-intermediate",
+  "batchnorm": "folded, epsilon=1e-5",
+  "unused_timbre_filter": "omitted",
+  "model_license": "No explicit license found in inspected upstream source or archive",
+  "storage_policy": "Only unet.intermediate convolution weights F16; all other tensors F32",
+  "gguf_sha256": "9cc338bd949a601cedbd114aec4eb69a98999fd0bb31f16856afee5e3ead9b2f",
+  "tensors": 272
+}

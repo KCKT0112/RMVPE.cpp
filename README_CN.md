@@ -37,12 +37,25 @@ git clone https://github.com/yxlllc/RMVPE.git reference/RMVPE
 git -C reference/RMVPE checkout 0aabafba18289ca938a73af0b0297686abf4922d
 python scripts/download_model.py
 python scripts/convert_rmvpe.py models/original/model.pt models/rmvpe-f32.gguf
+python scripts/convert_rmvpe.py models/original/model.pt models/rmvpe-f16-intermediate.gguf --dtype f16-intermediate
 python scripts/convert_rmvpe.py models/original/model.pt models/rmvpe-f16.gguf --dtype f16
 ```
 
 下载脚本获取指定的 [rmvpe.zip](https://github.com/yxlllc/RMVPE/releases/download/230917/rmvpe.zip)，校验 SHA256 后只解包 `model.pt`。转换时折叠推理模式 BatchNorm，移除 E2E0 不执行的 timbre-filter 权重，输出 272 个张量。F32 文件为 **361,883,776 字节**，F16 文件为 **183,112,672 字节**。F16 仅压缩卷积和投影权重，GRU、偏置及前端张量保持 F32。GGUF 元数据和相邻 JSON 保存来源、精度及哈希。
 
-F16 存储在真实语音 JFK 样本中出现约 **12.39 音分**的局部偏差，超过预设的 5 音分限值，尽管清浊音判断一致。它作为实验性的体积选项保留，精度敏感用途建议使用 F32，详见 [验证文档](docs/VALIDATION.md)。
+新增的 **`f16-intermediate`** 仅将 U-Net 中间层的 33 个卷积权重张量存为 F16，其他张量全部保留 F32。正式转换文件为 **212,986,112 字节（203.12 MiB）**，比 F32 小 **41.15%**，是当前实测推荐的体积缩小方案。扩展至 24 个样本、8,062 帧后，与原始 PyTorch 的最大音高偏差为 **0.00376 音分**，没有清浊音分歧。相同原生前端下对比 F32，CPU、Vulkan 均通过 24/24。
+
+端到端测试仍保留 `libri1` 的前端误差超限失败：log-Mel 最大差为 0.008909225，超过原定 0.005 限值，因此该套测试为 **23/24**。普通 F16 在扩展样本中最大偏差达到 **31.14 音分**，继续作为实验选项保留。上述数据衡量与原模型的一致性，尚不代表大规模、有真实音高标注的歌声准确率。详见 [模型体积与质量报告](docs/MODEL_SIZE.md)。
+
+选择性 F16 文件还可通过可逆字节重排与 Zstd 打包为 **178,794,609 字节（170.51 MiB）**，相对 F32 共缩小 **50.59%**。F16 转换有损，后续打包无损，解包会校验 SHA256。原生程序需要先解包再加载 GGUF；输出路径必须是新文件：
+
+```powershell
+python -m pip install -r requirements-compression.txt
+python scripts/compress_model.py pack models/rmvpe-f16-intermediate.gguf models/rmvpe-f16-intermediate.gguf.bsz
+python scripts/compress_model.py unpack models/rmvpe-f16-intermediate.gguf.bsz models/rmvpe-restored.gguf
+```
+
+当前严格推理路径会将 F16 权重展开用于 F32 运算，因此磁盘或下载体积缩小不保证内存、显存或耗时降低；图临时缓冲还可能增加。F32 继续作为默认与参考格式。
 
 若受限 Windows 账号导入 librosa 时卡在 Numba 缓存，可先设置可写目录：
 

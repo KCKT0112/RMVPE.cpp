@@ -44,7 +44,11 @@ def errors(reference, output):
             "prob_mean_abs":float(np.abs(reference-output).mean()),
             "uv_disagreements":int(((a>0)!=(b>0)).sum()), "voiced_frames":int(both.sum()),
             "pitch_max_cents":float(cents.max()) if cents.size else 0.,
-            "pitch_mean_cents":float(cents.mean()) if cents.size else 0.}
+            "pitch_mean_cents":float(cents.mean()) if cents.size else 0.,
+            "pitch_p50_cents":float(np.percentile(cents,50)) if cents.size else 0.,
+            "pitch_p99_cents":float(np.percentile(cents,99)) if cents.size else 0.,
+            "frames_above_5_cents":int((cents>5).sum()),
+            "frames_above_20_cents":int((cents>20).sum())}
 
 def timed(fn, warmup, runs, sync=lambda: None):
     for _ in range(warmup): fn(); sync()

@@ -4,13 +4,26 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
-import gguf
 import numpy as np
-import torch
-from librosa.filters import mel
-from reference import load_model
+
+STORAGE_TYPES = ("f32", "f16", "f16-intermediate")
+
+
+def use_half_storage(name, ndim, dtype):
+    if dtype not in STORAGE_TYPES:
+        raise ValueError(f"Unknown storage type: {dtype}")
+    eligible = ndim >= 2 and not name.startswith(("mel.", "gru."))
+    return eligible and (dtype == "f16" or
+                         (dtype == "f16-intermediate" and name.startswith("unet.intermediate.")))
 
 def convert(checkpoint, output, dtype="f32", upstream="reference/RMVPE"):
+    import gguf
+    import torch
+    from librosa.filters import mel
+    from reference import load_model
+
+    if dtype not in STORAGE_TYPES:
+        raise ValueError(f"Unknown storage type: {dtype}")
     torch.set_num_threads(4)
     print("Loading upstream checkpoint...", flush=True)
     model = load_model(checkpoint, upstream)
@@ -49,6 +62,8 @@ def convert(checkpoint, output, dtype="f32", upstream="reference/RMVPE"):
         "storage": dtype, "batchnorm": "folded, epsilon=1e-5", "unused_timbre_filter": "omitted",
         "model_license": "No explicit license found in inspected upstream source or archive",
     }
+    if dtype == "f16-intermediate":
+        provenance["storage_policy"] = "Only unet.intermediate convolution weights F16; all other tensors F32"
     output = Path(output)
     output.parent.mkdir(parents=True, exist_ok=True)
     writer = gguf.GGUFWriter(str(output), "rmvpe")
@@ -58,7 +73,7 @@ def convert(checkpoint, output, dtype="f32", upstream="reference/RMVPE"):
         writer.add_string("rmvpe." + key, value)
     for name, array in tensors.items():
         # Recurrent weights and all affine terms stay F32; convolutions/linears may be F16.
-        half = dtype == "f16" and array.ndim >= 2 and not name.startswith(("mel.", "gru."))
+        half = use_half_storage(name, array.ndim, dtype)
         array = np.ascontiguousarray(array, dtype=np.float16 if half else np.float32)
         if not np.isfinite(array).all():
             raise ValueError(f"Non-finite tensor: {name}")
@@ -76,7 +91,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("checkpoint", type=Path)
     parser.add_argument("output", type=Path)
-    parser.add_argument("--dtype", choices=["f32", "f16"], default="f32")
+    parser.add_argument("--dtype", choices=STORAGE_TYPES, default="f32")
     parser.add_argument("--upstream", default="reference/RMVPE")
     args = parser.parse_args()
     convert(args.checkpoint, args.output, args.dtype, args.upstream)

@@ -1,0 +1,8 @@
+{
+  "experimental_sha256": "b47d8a9db19341c9b45fd2baa474b15bb038577dc7695623af2762abbbd4513f",
+  "converted_sha256": "9cc338bd949a601cedbd114aec4eb69a98999fd0bb31f16856afee5e3ead9b2f",
+  "converted_bytes": 212986112,
+  "tensor_count": 272,
+  "f16_tensor_count": 33,
+  "all_tensor_names_shapes_types_bytes_identical": true
+}

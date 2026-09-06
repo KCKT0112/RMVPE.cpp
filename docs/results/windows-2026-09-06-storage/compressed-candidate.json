@@ -1,0 +1,10 @@
+{
+  "file": "work\\quality\\rmvpe-f16-intermediate.gguf.bsz",
+  "original_bytes": 212985696,
+  "compressed_bytes": 178804013,
+  "model_sha256": "b47d8a9db19341c9b45fd2baa474b15bb038577dc7695623af2762abbbd4513f",
+  "compression_seconds": 1.6728199999924982,
+  "decompression_verify_seconds": 0.5509381000010762,
+  "sha256_roundtrip_match": true,
+  "storage_profile": "only unet.intermediate convolution weights F16; other tensors F32"
+}
