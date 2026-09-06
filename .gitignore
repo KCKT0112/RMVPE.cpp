@@ -1,0 +1,13 @@
+/build*/
+/reference/
+/models/
+/third_party/ggml/
+/work/
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+*.gguf
+*.onnx
+*.pt
+*.zip

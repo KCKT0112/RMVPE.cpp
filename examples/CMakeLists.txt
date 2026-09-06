@@ -1,0 +1,11 @@
+# SPDX-License-Identifier: MPL-2.0
+cmake_minimum_required(VERSION 3.18)
+project(rmvpe_consumer LANGUAGES C CXX)
+set(RMVPE_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+add_subdirectory(.. rmvpe-build)
+add_executable(rmvpe-example basic.cpp)
+target_link_libraries(rmvpe-example PRIVATE rmvpe::rmvpe)
+set_target_properties(rmvpe-example PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+foreach(config DEBUG RELEASE RELWITHDEBINFO MINSIZEREL)
+    set_target_properties(rmvpe-example PROPERTIES RUNTIME_OUTPUT_DIRECTORY_${config} "${CMAKE_BINARY_DIR}/bin")
+endforeach()

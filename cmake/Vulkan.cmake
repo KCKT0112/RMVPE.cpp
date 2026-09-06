@@ -1,0 +1,77 @@
+# SPDX-License-Identifier: MPL-2.0
+# Build-copy integration pattern adapted from KCKT0112/FCPE.cpp.
+function(rmvpe_replace variable needle replacement)
+    string(REPLACE "${needle}" "" removed "${${variable}}")
+    string(LENGTH "${${variable}}" before)
+    string(LENGTH "${removed}" after)
+    string(LENGTH "${needle}" length)
+    math(EXPR count "${before}-${after}")
+    if(NOT count EQUAL length)
+        message(FATAL_ERROR "RMVPE Vulkan patch anchor missing/non-unique; use ggml v0.19.0: ${needle}")
+    endif()
+    string(REPLACE "${needle}" "${replacement}" result "${${variable}}")
+    set(${variable} "${result}" PARENT_SCOPE)
+endfunction()
+function(rmvpe_vulkan)
+    get_target_property(source_dir ggml-vulkan SOURCE_DIR)
+    get_target_property(sources ggml-vulkan SOURCES)
+    set(output_dir "${CMAKE_CURRENT_BINARY_DIR}/rmvpe-vulkan")
+    file(MAKE_DIRECTORY "${output_dir}")
+    file(READ "${source_dir}/ggml-vulkan.cpp" code)
+    # Strict default; process-level RMVPE_VK_FAST=1 opts into upstream mixed arithmetic.
+    foreach(flag GGML_VK_DISABLE_F16 GGML_VK_DISABLE_COOPMAT GGML_VK_DISABLE_COOPMAT2)
+        string(FIND "${code}" "getenv(\"${flag}\")" found)
+        if(found EQUAL -1)
+            message(FATAL_ERROR "Missing Vulkan precision flag: ${flag}")
+        endif()
+        string(REPLACE "getenv(\"${flag}\")" "(getenv(\"RMVPE_VK_FAST\") ? getenv(\"${flag}\") : \"1\")" code "${code}")
+    endforeach()
+    rmvpe_replace(code "device->disable_host_visible_vidmem = GGML_VK_DISABLE_HOST_VISIBLE_VIDMEM != nullptr;"
+        "device->disable_host_visible_vidmem = GGML_VK_DISABLE_HOST_VISIBLE_VIDMEM != nullptr || !getenv(\"RMVPE_VK_HOST_VISIBLE\");")
+    rmvpe_replace(code "#include \"ggml-vulkan.h\"" "#include \"ggml-vulkan.h\"\n#include \"rmvpe-gru-spv.h\"\n#include \"gru-tag.h\"")
+    rmvpe_replace(code "    vk_matmul_pipeline pipeline_matmul_f32 {};" "    vk_pipeline pipeline_rmvpe_gru;\n    vk_matmul_pipeline pipeline_matmul_f32 {};")
+    set(anchor "    // FA scalar has two SPIR-V modules (MMQ vs non-MMQ); FA cm1 has one. K/V")
+    set(insert [=[
+    if (device->properties.limits.maxComputeWorkGroupInvocations >= 256 &&
+        device->properties.limits.maxComputeWorkGroupSize[0] >= 256) {
+        ggml_vk_create_pipeline2(device, device->pipeline_rmvpe_gru, "rmvpe_gru",
+            sizeof(rmvpe_gru_spv), rmvpe_gru_spv, "main", 4, 28, {1,1,1}, {}, 1);
+    }
+]=])
+    rmvpe_replace(code "${anchor}" "${insert}\n${anchor}")
+    set(anchor "// Returns true if node has enqueued work into the queue, false otherwise")
+    rmvpe_replace(code "${anchor}" "#include \"rmvpe-gru.inc\"\n\n${anchor}")
+    set(anchor "    switch (node->op) {\n    case GGML_OP_REPEAT:")
+    rmvpe_replace(code "${anchor}" "    if (node->op == GGML_OP_CUSTOM) {\n        rmvpe_vk_gru(ctx, compute_ctx, node);\n    } else\n${anchor}")
+    set(anchor "    switch (op->op) {\n        case GGML_OP_UNARY:")
+    rmvpe_replace(code "${anchor}" "    if (op->op == GGML_OP_CUSTOM) return !getenv(\"RMVPE_VK_CPU_GRU\") && device->pipeline_rmvpe_gru && rmvpe_gru_valid(op);\n${anchor}")
+    set(output "${output_dir}/ggml-vulkan.cpp")
+    set(old "")
+    if(EXISTS "${output}")
+        file(READ "${output}" old)
+    endif()
+    if(NOT old STREQUAL code)
+        file(WRITE "${output}" "${code}")
+    endif()
+    set(patched "")
+    foreach(source IN LISTS sources)
+        get_filename_component(name "${source}" NAME)
+        if(name STREQUAL "ggml-vulkan.cpp")
+            list(APPEND patched "${output}")
+        else()
+            list(APPEND patched "${source}")
+        endif()
+    endforeach()
+    set_property(TARGET ggml-vulkan PROPERTY SOURCES "${patched}")
+    set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS "${source_dir}/ggml-vulkan.cpp")
+    find_program(RMVPE_GLSLC glslc HINTS "$ENV{VULKAN_SDK}/Bin" "$ENV{VULKAN_SDK}/bin" REQUIRED)
+    set(shader "${CMAKE_CURRENT_SOURCE_DIR}/src/vulkan/rmvpe-gru.comp")
+    add_custom_command(OUTPUT "${output_dir}/rmvpe-gru-spv.h"
+        COMMAND "${RMVPE_GLSLC}" -O --target-env=vulkan1.2 "${shader}" -o "${output_dir}/rmvpe-gru.spv"
+        COMMAND "${CMAKE_COMMAND}" "-DINPUT=${output_dir}/rmvpe-gru.spv" "-DOUTPUT=${output_dir}/rmvpe-gru-spv.h"
+            -P "${CMAKE_CURRENT_SOURCE_DIR}/cmake/EmbedSpirv.cmake"
+        DEPENDS "${shader}" "${CMAKE_CURRENT_SOURCE_DIR}/cmake/EmbedSpirv.cmake" VERBATIM)
+    add_custom_target(rmvpe-gru-shader DEPENDS "${output_dir}/rmvpe-gru-spv.h")
+    add_dependencies(ggml-vulkan rmvpe-gru-shader)
+    target_include_directories(ggml-vulkan PRIVATE "${source_dir}" "${output_dir}" "${CMAKE_CURRENT_SOURCE_DIR}/src" "${CMAKE_CURRENT_SOURCE_DIR}/src/vulkan")
+endfunction()

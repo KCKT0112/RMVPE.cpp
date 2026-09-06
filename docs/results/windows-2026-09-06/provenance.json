@@ -1,0 +1,84 @@
+{
+  "hardware": {
+    "cpu": "AMD Ryzen 7 5700X, 8 cores / 16 threads",
+    "gpu": "NVIDIA GeForce RTX 4060, 8 GB",
+    "driver": "620.02",
+    "vulkan_sdk": "1.4.341.1",
+    "compiler": "MSVC 19.51.36256",
+    "cpu_build_isa": "AVX2/FMA"
+  },
+  "source_hashes": {
+    "src/audio.cpp": "07b953eee0342110af00ae441a8c796cd7950c53dd6709dba323d83227a10eca",
+    "src/gru-tag.h": "b48ebefcc6d88a90700f4f6eedb57d63e514018f58648f77b532289a72c6f515",
+    "src/gru.cpp": "190ebbb4d3224f8c734d66b5a20f3f45608610415067dfe66355d12ee6c19308",
+    "src/gru.h": "7d3afe477703833000033163be3dc1108d2ccb6ae6365da9d142c7e6f4507718",
+    "src/rmvpe.cpp": "cca765d3456ba1d8ac649afd61dabe4133a56bb9ab836baf76387ca80e43a60d",
+    "src/vulkan/rmvpe-gru.comp": "b9461d95d1586794ab20337a24aafdd6a7e6a97779034bd645c94e696dbbe31b",
+    "src/vulkan/rmvpe-gru.inc": "21df8d3a0b27c7f83010e1dc590e6aeb09689db2fc99df7c05bb70db61491ab8",
+    "include/rmvpe/rmvpe.h": "363ea2930e5a722b23625066e2bb9e20d1911e739c359e13c2dbdad6953523b8",
+    "cmake/EmbedSpirv.cmake": "d60cd9343a7bfb3b267c5fe559d4438468fd128cf42ebbb8d661fb125fa661b3",
+    "cmake/Vulkan.cmake": "fa76111a8725c36c1c857ca3758348224e9754c3f328c11257d12794e977443c",
+    "tools/rmvpe-cli.cpp": "5c154c3f912f9d7304894a796da9e9092c2d050969271e5e5a58379cf043abf6",
+    "scripts/benchmark.py": "8668283f33a96dcf312b016bb28a89c7864eec49aac1487342cffa3a7b140d3b",
+    "scripts/convert_rmvpe.py": "fbad45fa09afe87a7202b2ad69c6aacade7075b4538ae8ff139b64e9f7c9b9e0",
+    "scripts/diagnose.py": "88728f7566013e3e0c5a20dd62adce78b08104dcb78d03dedc51b4ce42ad3a2a",
+    "scripts/download_model.py": "ff007286c6ff14c3bd30b7389bbcb9f2c4beeb27f17573a123e69a0c3cb06486",
+    "scripts/record_results.py": "8c91e1728431c47a991c4df7f5567a4dd60d93837cc3b527a61f57f12953d5f4",
+    "scripts/reference.py": "5d4579338d60e13bb82720bb93482302de02cc811d883c6b4133e1bb2175284e",
+    "scripts/validate.py": "346a48866df5d19629d276be8bc12d9b26e472c1537b41f8546e4d5944b696e2",
+    "tests/test_gru.cpp": "b43dc00112b57e961b14691a30f2f66f846f570db0ec68c82e128c25d5a1a590",
+    "tests/test_rmvpe.cpp": "c6421d2333f434a415adb1f8e94cf33fc66a979013a3b0c6503a11ae9dea9dc8",
+    "tests/test_session.cpp": "473ff149b27fa89140a3717ba126452ca57d87ae9879c45d64d9f14556325e3b",
+    "tests/test_tools.py": "df9c290be18922a19e76e5ae4a8100747802bc3c177f84080dc4d03ffb1aa9f6"
+  },
+  "final_binary_hashes": {
+    "build-cpu/bin/ggml-base.dll": "d21422c6ae649b9192539bfcf0a248a7483ed185742744221639b0d0b3e156cc",
+    "build-cpu/bin/ggml-cpu.dll": "f2b4eca3402ee376506a1ff12e8ddb1a6c16770f366e9989dff8b56544075f44",
+    "build-cpu/bin/ggml.dll": "2232964a1b07ac7ed5b9c6c798c64033da6890a28d4089fc0e566280f74995d9",
+    "build-cpu/bin/rmvpe-cli.exe": "44431ed28a431dfc8c1ade8a42dc165fd9decfd24d3cfdb568144c4ecb7bedb6",
+    "build-cpu/bin/rmvpe-gru-tests.exe": "4e42709e14234d44ae970e63ceee227902fe706a63354084b452ae3fa544400f",
+    "build-cpu/bin/rmvpe-session-tests.exe": "4639954431f95efc601304b694322ae989fe481a42442153dcafa21651ceca33",
+    "build-cpu/bin/rmvpe-tests.exe": "119c05904bddc99af7277e57fb36f408e6c02bdfc46221ccf9b58d3a354221e7",
+    "build-vulkan/bin/ggml-base.dll": "2061e82e77719e4e7faa4eb5560331dd4d1690f6da1af2a0b4d14f150154b1ea",
+    "build-vulkan/bin/ggml-cpu.dll": "76c1d176e1b5b032fe7d5f8b7a9cdc52ecc15700fc7d3605d07ae918917efa3a",
+    "build-vulkan/bin/ggml-vulkan.dll": "a10e1bbf41c5c1d0671facce72a140ae2f13d819a53b539282d062d3e9cac72c",
+    "build-vulkan/bin/ggml.dll": "b3f303fad872774d470ef7e6a135f3124f92d15f28c0f7468d56adf9b26561f1",
+    "build-vulkan/bin/rmvpe-cli.exe": "d02227fa648cb2b597085e1635a11754054b4ffff01b5793e8e60c5ff757756d",
+    "build-vulkan/bin/rmvpe-gru-tests.exe": "7fa101037d413f76241ead4f3e97714f899cd312061cb2c2473e55859f16d9bf",
+    "build-vulkan/bin/rmvpe-session-tests.exe": "6563820fcf687dae1074e5770928c1691a31ac178a8b60cf80cabbbcc2aa0bd5",
+    "build-vulkan/bin/rmvpe-tests.exe": "ef0339d28e24740c9e62c36f5354da5271aabf1aece8c0d45aeb4f605849a5ce"
+  },
+  "input_hashes": {
+    "work/benchmark/10s.mel.f32": "fcf0038a348baa97698b101a8cc6151d99ddf324af6e42aba01a473c429711f8",
+    "work/benchmark/1s.mel.f32": "389496fe02a4cbfd086453d14314f71420c100ff45852d8584009c53023e5079",
+    "work/benchmark/3s.mel.f32": "f65a326eab5059dc6062d6b46054eb15830da1a410de1c60daa5fcb5b232f370",
+    "work/benchmark/10s.wav": "535e6a03731b0017ec72223ca5b5ddb39be46bcb84ae5b4a349969389be5b04e",
+    "work/benchmark/1s.wav": "64f0b27f4569d4883f935b92f0fafc98e7cb3bcaddea8d2291aeaa0166772924",
+    "work/benchmark/3s.wav": "052ecbb2881ff52ed7c0ad92b8bb3bdb18e3f9795fe9b810cd00e8f4b773b6c4"
+  },
+  "model_manifests": {
+    "models\\rmvpe-f16.gguf.json": {
+      "source": "https://github.com/yxlllc/RMVPE",
+      "release": "230917",
+      "checkpoint_sha256": "19dc1809cf4cdb0a18db93441816bc327e14e5644b72eeaae5220560c6736fe2",
+      "storage": "f16",
+      "batchnorm": "folded, epsilon=1e-5",
+      "unused_timbre_filter": "omitted",
+      "model_license": "No explicit license found in inspected upstream source or archive",
+      "gguf_sha256": "1ae031988cf085ff21708c49dc70885761260967b0dec9bfe5a661e256e6fee4",
+      "tensors": 272
+    },
+    "models\\rmvpe-f32.gguf.json": {
+      "source": "https://github.com/yxlllc/RMVPE",
+      "release": "230917",
+      "checkpoint_sha256": "19dc1809cf4cdb0a18db93441816bc327e14e5644b72eeaae5220560c6736fe2",
+      "storage": "f32",
+      "batchnorm": "folded, epsilon=1e-5",
+      "unused_timbre_filter": "omitted",
+      "model_license": "No explicit license found in inspected upstream source or archive",
+      "gguf_sha256": "62025f24b76d2d3e2db81a0076e34a0b825017c3ed2e842788b08a2b13bf5bf5",
+      "tensors": 272
+    }
+  },
+  "note": "Final hashes include subsequent CLI-only changes (single ordinary inference, optional end-to-end timing) and tests/docs; network algorithms are those of benchmark-final.json. Initial/tuning runs are exploratory and retain their original metadata. Exact raw samples are never rewritten."
+}

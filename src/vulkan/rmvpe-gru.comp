@@ -1,0 +1,37 @@
+// SPDX-License-Identifier: MPL-2.0
+#version 450
+// One persistent workgroup owns one direction and all recurrent state.
+layout(local_size_x=256) in;
+layout(binding=0) readonly buffer X { float x[]; };
+layout(binding=1) readonly buffer W { float w[]; };
+layout(binding=2) readonly buffer B { float b[]; };
+layout(binding=3) writeonly buffer Y { float y[]; };
+layout(push_constant) uniform Params { uint frames; uint reverse; uint ox; uint ow; uint ob; uint oy; uint transposed; } p;
+shared float h[256];
+float sigmoid(float v) { return 1.0/(1.0+exp(-v)); }
+void main() {
+    uint j=gl_LocalInvocationID.x;
+    h[j]=0;
+    barrier();
+    for(uint step=0;step<p.frames;++step) {
+        uint t=p.reverse != 0 ? p.frames-1-step : step;
+        float hr=0, hz=0, hn=0;
+        for(uint k=0;k<256;++k) {
+            float prev=h[k];
+            uint offset=p.transposed != 0 ? k*768+j : j*256+k;
+            uint stride=p.transposed != 0 ? 256 : 65536;
+            hr+=w[p.ow+offset]*prev;
+            hz+=w[p.ow+offset+stride]*prev;
+            hn+=w[p.ow+offset+2*stride]*prev;
+        }
+        uint base=p.ox+t*768+j;
+        float r=sigmoid(x[base]+b[p.ob+j]+hr);
+        float z=sigmoid(x[base+256]+b[p.ob+256+j]+hz);
+        float candidate=tanh(x[base+512]+r*(b[p.ob+512+j]+hn));
+        float next=(1-z)*candidate+z*h[j];
+        barrier(); // every dot product has consumed the previous state
+        h[j]=next;
+        y[p.oy+t*256+j]=next;
+        barrier();
+    }
+}
